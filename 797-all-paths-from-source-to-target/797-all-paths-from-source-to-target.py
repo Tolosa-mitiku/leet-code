@@ -6,7 +6,6 @@ class Solution:
             curr = queue.popleft()
             for i in graph[curr[0]]:
                 temp = curr[1][:]
-                print(temp)
                 temp.append(i)
                 queue.append([i, temp])
                 if i == len(graph)-1:
