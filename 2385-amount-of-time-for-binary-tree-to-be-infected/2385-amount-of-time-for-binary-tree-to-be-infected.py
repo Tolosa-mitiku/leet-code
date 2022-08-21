@@ -31,6 +31,4 @@ class Solution:
                 for i in graph[curr]:
                     if i not in visited:
                         queue.append(i)
-                
-        print(graph)
         return ans-1
