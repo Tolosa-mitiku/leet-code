@@ -12,7 +12,6 @@ class Solution:
             nonlocal ans
             defdict[node.val] += 1
             if not node.left and not node.right:
-                print(defdict)
                 odds = 0
                 for i in defdict.values():
                     if int(i) % 2 == 1:
