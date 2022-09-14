@@ -6,24 +6,21 @@
 #         self.right = right
 class Solution:
     def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
-        ans = 0
-        defdict = defaultdict(int)
+        counter = defaultdict(int)
         def helper(node):
-            nonlocal ans
-            defdict[node.val] += 1
+            if not node:
+                return 0
+            counter[node.val] += 1
             if not node.left and not node.right:
                 odds = 0
-                for i in defdict.values():
+                for i in counter.values():
                     if int(i) % 2 == 1:
                         odds += 1
-                ans += odds < 2
-                defdict[node.val] -= 1
-                return
-            if node.left:
-                helper(node.left)
-            if node.right:
-                helper(node.right)
-            defdict[node.val] -= 1
-        helper(root)
-        return ans
+                counter[node.val] -= 1
+                return 1 if odds < 2 else 0
+            left = helper(node.left)
+            right = helper(node.right)
+            counter[node.val] -= 1
+            return left + right
+        return helper(root)
             
