@@ -3,9 +3,17 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        if k == 0:
-            return 
-        temp = list(nums)
-        temp = temp * 2
-        for i in range(len(nums)):
-            nums[i] = temp[len(nums) + i - (k % len(nums))]
+        nums.reverse()
+        left = 0
+        right = k % len(nums) - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+        left = k % len(nums)
+        right = len(nums) - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+        
