@@ -1,10 +1,7 @@
 class Solution:
     def fib(self, n: int) -> int:
-        @lru_cache
-        def helper(n):
-            if n == 1:
-                return 1
-            elif n == 0:
-                return 0
-            return helper(n-1) + helper(n-2)
-        return helper(n)
+        fib = [0] * (n + 2)
+        fib[1] = 1
+        for i in range(2,n+1):
+            fib[i] = fib[i-1] + fib[i-2]
+        return fib[n]
