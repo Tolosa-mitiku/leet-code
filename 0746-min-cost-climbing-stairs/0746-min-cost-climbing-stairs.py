@@ -1,10 +1,9 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        @lru_cache
-        def helper(ind):
-            if ind == len(cost):
-                return 0
-            if ind == len(cost)-1:
-                return cost[ind]
-            return cost[ind] + min(helper(ind+1), helper(ind+2))
-        return min(helper(0), helper(1))
+        n = len(cost)
+        dp = [0] * (n)
+        dp[-1] = cost[-1]
+        dp[-2] = cost[-2]
+        for i in range(3,n+1):
+            dp[len(cost)-i] = cost[len(cost)-i] + min(dp[len(cost)-i+1], dp[len(cost)-i+2])
+        return min(dp[0], dp[1])
