@@ -5,5 +5,5 @@ class Solution:
             if nums[right] != prev:
                 nums[left] = nums[right]
                 left += 1
-                prev = nums[right]
+            prev = nums[right]
         return left
