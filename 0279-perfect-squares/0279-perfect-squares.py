@@ -1,13 +1,13 @@
 class Solution:
     def numSquares(self, n: int) -> int:
         
-        @cache
-        def dp(n):
-            if n == 0:
-                return 0
-            ans = float("inf")
-            for i in range(1, int(n ** (0.5))+1):
-                ans = min(ans, 1 + dp(n - (i * i)))
-            return ans
-        return dp(n)
+        queue = deque([(n, 0)])
+        while queue:
+            num, dist = queue.popleft()
+            for i in range(int(num ** (0.5)), 0, -1):
+                var = num - (i * i)
+                if var == 0:
+                    return dist + 1
+                if var >= 0:
+                    queue.append((var, dist + 1))
             
